@@ -6,9 +6,6 @@ export default {
   template: `
   <ul class="book-list">
       <book-preview :book="book" v-for="book in books" :key="book.id" @click.native="select(book.id)"/>
-      <!-- <div class="actions"> -->
-        <!-- <button ></button> -->
-      <!-- </div> -->
   </ul>
   
   `,
@@ -22,5 +19,3 @@ export default {
     bookPreview,
   },
 }
-
-//book-preview "

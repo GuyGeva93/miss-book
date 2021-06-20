@@ -5,14 +5,23 @@ export const bookPreview = {
   template: `
     <li class="book-preview">
         <p class="book-title">{{book.title}}</p>
-        <p>Price: {{book.listPrice.amount}} {{currency}}</p>
+        <p>{{currency}}{{book.listPrice.amount}} </p>
     </li>
   
   `,
 
+  data() {
+    return {
+      ILS: '₪',
+      USD: '$',
+      EUR: '€'
+    }
+  },
+
   computed: {
     currency() {
-      return this.book.listPrice.currencyCode
+      const currCurrency = this.book.listPrice.currencyCode
+      return this[currCurrency]
     }
   },
 

@@ -6,8 +6,9 @@ import bookDetails from './book-details.js';
 export default {
   template: `
   <section>
-    <!-- <book-filter @filtered="setFilter"/> -->
-    <book-list v-if="!selectedBook" :books="books" @selected="selectBook"/>
+    <h1>Miss Book</h1>
+    <book-filter @filtered="setFilter"/>
+    <book-list v-if="!selectedBook" @selected="selectBook" :books="booksToShow"/>
     <book-details v-else :book="selectedBook" @close="closeDetails"/>
   </section>
   
@@ -15,9 +16,8 @@ export default {
 
   data() {
     return {
-      books: null,
+      books: [],
       filterBy: null,
-      booksToShow: null,
       selectedBook: null
     }
   },
@@ -28,17 +28,29 @@ export default {
     },
     closeDetails() {
       this.selectedBook = null;
+    },
+    setFilter(filterBy) {
+      this.filterBy = filterBy;
+    }
+  },
+
+  computed: {
+    booksToShow() {
+      if (!this.filterBy) return this.books;
+      const searchStr = this.filterBy.byName.toLowerCase();
+      return this.books.filter(book => {
+        return book.title.toLowerCase().includes(searchStr);
+      });
     }
   },
 
   created() {
     this.books = bookService.query();
   },
+
   components: {
     bookFilter,
     bookList,
     bookDetails
-  },
+  }
 }
-
-// book-list :books="booksToShow" 
