@@ -1,3 +1,7 @@
+button {
+  cursor: pointer;
+}
+
 /* BOOK LIST */
 
 .book-list {
@@ -24,6 +28,10 @@
   border-radius: 5px;
 }
 
+.book-preview {
+  cursor: pointer;
+}
+
 .book-preview .book-title {
   font-weight: bolder;
 }
@@ -36,4 +44,8 @@
 
 .bold {
   font-weight: bolder;
+}
+
+.book-details-title {
+  font-style: italic;
 }

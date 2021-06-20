@@ -5,11 +5,11 @@ export default {
   template: `
   <article class="book-details">
     <button @click="$emit('close')">Close</button>
+    <h3 class="book-details-title">-{{book.title}}-</h3>
     <p v-if="countPages" class="bold">{{countPages}}</p>
     <p v-if="publishDate"  class="bold">{{publishDate}}</p>
-    <!-- <p v-if="price" v-bind:class="">{{price}}</p> -->
-    <p>{{book.title}}</p>
-    <p>Authors: {{book.authors}}</p>
+    <p class="bold">Authors:</p>
+    <ul v-for="author in book.authors" class="bold"><li>{{author}}</li> </ul>
     <p>Publish date: {{book.publishedDate}}</p>
     <p>Description: {{book.description}}</p>
     <p>Page count: {{book.pageCount}}</p>
