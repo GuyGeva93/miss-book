@@ -27,3 +27,13 @@
 .book-preview .book-title {
   font-weight: bolder;
 }
+
+/* BOOK DETAILS */
+
+.book-details {
+  font-size: 1.4rem;
+}
+
+.bold {
+  font-weight: bolder;
+}
