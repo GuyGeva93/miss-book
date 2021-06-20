@@ -8,8 +8,6 @@ function query() {
   return gBooks
 }
 
-
-
 const gBooks = [
   {
     "id": "OXeMG8wNskc",

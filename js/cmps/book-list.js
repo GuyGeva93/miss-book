@@ -7,12 +7,10 @@ export default {
   <ul class="book-list">
     <li v-for="book in books" :key="book.id">
       <book-preview :book="book" @click.native="select(book.id)"/>
-      <div class="actions">
-        <button ></button>
-      </div>
+      <!-- <div class="actions"> -->
+        <!-- <button ></button> -->
+      <!-- </div> -->
     </li>
-
-
   </ul>
   
   `,
@@ -26,3 +24,5 @@ export default {
     bookPreview,
   },
 }
+
+//book-preview "

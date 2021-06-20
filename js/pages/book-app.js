@@ -6,19 +6,31 @@ import bookDetails from './book-details.js';
 export default {
   template: `
   <section>
-    <book-filter @filtered="setFilter"/>
-    <book-list :books="booksToShow" @selected="selectBook"/>
-    <book-details @selected="selectedBook"/>
+    <!-- <book-filter @filtered="setFilter"/> -->
+    <book-list :books="books" @selected="selectBook"/>
+    <book-details v-if="selectedBook" :book="selectedBook" @close="closeDetails"/>
   </section>
   
   `,
+
   data() {
     return {
       books: null,
       filterBy: null,
-      booksToShow: null
+      booksToShow: null,
+      selectedBook: null
     }
   },
+
+  methods: {
+    selectBook(bookId) {
+      this.selectedBook = this.books.find(book => { return book.id === bookId })
+    },
+    closeDetails() {
+      this.selectedBook = null;
+    }
+  },
+
   created() {
     this.books = bookService.query();
   },
@@ -28,3 +40,5 @@ export default {
     bookDetails
   },
 }
+
+// book-list :books="booksToShow" 

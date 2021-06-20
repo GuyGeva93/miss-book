@@ -1,0 +1,29 @@
+/* BOOK LIST */
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* BOOK PREVIEW */
+
+.book-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  height: 150px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.book-preview .book-title {
+  font-weight: bolder;
+}
