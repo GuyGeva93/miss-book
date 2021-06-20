@@ -1,5 +1,5 @@
 
-export default {
+export const bookPreview = {
   props: ['book'],
 
   template: `

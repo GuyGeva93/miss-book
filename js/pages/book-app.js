@@ -1,7 +1,7 @@
 import { bookService } from '../services/book-service.js';
-import '../cmps/book-filter.js';
-import '../cmps/book-list.js';
-import '../cmps/book-details.js';
+import bookFilter from '../cmps/book-filter.js';
+import bookList from '../cmps/book-list.js';
+import bookDetails from './book-details.js';
 
 export default {
   template: `
@@ -21,5 +21,10 @@ export default {
   },
   created() {
     this.books = bookService.query();
+  },
+  components: {
+    bookFilter,
+    bookList,
+    bookDetails
   },
 }
