@@ -4,17 +4,39 @@ export default {
 
   template: `
   <article class="book-details">
-    <button @click="$emit('close')">Close</button>
-    <h3 class="book-details-title">-{{book.title}}-</h3>
-    <p v-if="countPages" class="bold">{{countPages}}</p>
-    <p v-if="publishDate"  class="bold">{{publishDate}}</p>
-    <p class="bold">Authors:</p>
-    <ul v-for="author in book.authors" class="bold"><li>{{author}}</li> </ul>
-    <p>Publish date: {{book.publishedDate}}</p>
-    <p>Description: {{book.description}}</p>
-    <p>Page count: {{book.pageCount}}</p>
+    <div class="book-details-img">
+      <img :src="book.thumbnail">
+    </div>
+    <div class="book-details-info">
+      <h2 class="book-details-title">-{{book.title}}-</h2>
+      <p v-if="countPages" class="bold">-{{countPages}}</p>
+      <p v-if="publishDate" class="bold">-{{publishDate}}</p>
+      <p class="bold">-{{book.listPrice.amount}}</p>
+      <!-- <p v-if="publishDate" class="bold" v-bind:class="{color: priceColor}">-{{book.listPrice.amount}}</p> -->
+      <p class="bold">Authors:</p>
+      <ul v-for="author in book.authors" class="bold"><li>{{author}}</li> </ul>
+      <p>Publish date: {{book.publishedDate}}</p>
+      <p>{{book.description}}</p>
+      <p>Page count: {{book.pageCount}}</p>
+      <button @click="$emit('close')">Close</button>
+    </div>
   </article>
   `,
+
+  data() {
+    return {
+      // red: false,
+      // green: false
+    }
+  },
+
+  // methods() {
+  //   return {
+  //     colorsSet() {
+  //       if (this.book.listPrice.amount > )
+  //     }
+  //   }
+  // },
 
   computed: {
     countPages() {
@@ -30,9 +52,16 @@ export default {
       if (countYear < 1) return 'New book!'
       return null
     },
-    // price() {
-    //   if (this.book.price > 150) return 'red'
-    //   if (this.book.price < 20) return 'green'
+    price() {
+      return this.book.listPrice.amount
+    },
+
+    // priceColor() {
+    //   if (this.red) {
+    //     return true
+    //   }
+    //   if (this.green) return true
+
     // }
   }
 
