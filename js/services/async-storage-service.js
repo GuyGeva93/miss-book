@@ -10,7 +10,7 @@ export const storageService = {
 }
 
 function query(entityType) {
-  var entities = JSON.parse(localStorage.getItem(entityType)) || []
+  var entities = JSON.parse(localStorage.getItem(entityType)) || gBooks
   return Promise.resolve(entities);
 }
 
