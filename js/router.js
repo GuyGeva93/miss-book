@@ -1,20 +1,22 @@
+import homePage from './pages/home-page.js';
+import about from './pages/about.js';
+import bookApp from './pages/book-app.js';
 
-// const routes = [
-//   {
-//     path: '/',
-//     component: 
-//   },
-//   {
-//     path: '/about',
-//     component: 
-//   },
-//   {
-//     path: '/book',
-//     component: 
-//   },
-//   {
-//     path: '/book/:bookId',
-//     component: 
-//   },
 
-// ]
+
+const routes = [
+  {
+    path: '/',
+    component: homePage
+  },
+  {
+    path: '/about',
+    component: about
+  },
+  {
+    path: '/book',
+    component: bookApp
+  }
+]
+
+export const router = new VueRouter({ routes })

@@ -46,8 +46,8 @@ export default {
 
   created() {
     bookService.query()
-      .then(books => this.books = books);
-    // .then(books => console.log(books));
+      .then(books => this.books = books)
+      .catch(err => console.log(err));
   },
 
   components: {

@@ -1,12 +1,18 @@
 import bookApp from './pages/book-app.js';
+import { router } from './router.js';
+
 
 const options = {
   el: '#app',
+
+  router,
+
   template: `
       <section>
-          <book-app />
+        <router-view />
       </section>
     `,
+
   components: {
     bookApp
   }
