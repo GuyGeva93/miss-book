@@ -9,8 +9,8 @@ export default {
   <section>
     <app-header />
     <book-filter @filtered="setFilter"/>
-    <book-list v-if="!selectedBook" @selected="selectBook" :books="booksToShow"/>
-    <book-details v-else :book="selectedBook" @close="closeDetails"/>
+    <book-list :books="booksToShow"/>
+    <!-- <book-details :book="selectBook" @close="closeDetails"/> -->
   </section>
   
   `,
@@ -19,20 +19,10 @@ export default {
     return {
       books: [],
       filterBy: null,
-      selectedBook: null
     }
   },
 
   methods: {
-    selectBook(bookId) {
-      // this.selectedBook = this.books.find(book => { return book.id === bookId })
-      bookService.getById(bookId)
-        .then(book => { return book })
-        .catch(err => console.log(err));
-    },
-    closeDetails() {
-      this.selectedBook = null;
-    },
     setFilter(filterBy) {
       this.filterBy = filterBy;
     }

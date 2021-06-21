@@ -6,6 +6,7 @@ export const bookPreview = {
     <li class="book-preview">
         <p class="book-title">{{book.title}}</p>
         <p>{{currency}}{{book.listPrice.amount}} </p>
+        <router-link :to="'/book/' + book.id">LinkTitle</router-link>
     </li>
   
   `,

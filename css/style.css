@@ -149,4 +149,10 @@ button {
   flex-direction: column;
   align-items: center;
   border: 1px solid black;
+  padding: 5px;
+}
+
+.review-add-form {
+  display: flex;
+  flex-direction: column;
 }

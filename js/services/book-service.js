@@ -1,5 +1,4 @@
 import { storageService } from './async-storage-service.js';
-import { utilService } from './util-service.js';
 
 const BOOKS_KEY = 'books'
 
@@ -18,7 +17,7 @@ function post() {
 }
 
 function getById(bookId) {
-  return storageService.get(BOOKS_KEY, bookId)
+  return gBooks.find(book => { return book.id === bookId })
 }
 
 const gBooks = [

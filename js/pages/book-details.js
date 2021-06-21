@@ -1,18 +1,15 @@
+import { bookService } from '../services/book-service.js'
 import reviewAdd from './review-add.js'
 
 export default {
-  props: ['book'],
-
   template: `
   <article class="book-details">
-    <div class="book-details-img">
-      <img :src="book.thumbnail">
-    </div>
-    <div class="book-details-info">
+    
+    <section class="book-details-info">
       <h2 class="book-details-title">-{{book.title}}-</h2>
       <p v-if="countPages" class="bold">-{{countPages}}</p>
       <p v-if="publishDate" class="bold">-{{publishDate}}</p>
-      <p class="bold">-{{book.listPrice.amount}}</p>
+      <!-- <p class="bold">-{{book.listPrice.amount}}</p> -->
       <!-- <p v-if="publishDate" class="bold" v-bind:class="{color: priceColor}">-{{book.listPrice.amount}}</p> -->
       <p class="bold">Authors:</p>
       <ul v-for="author in book.authors" class="bold"><li>{{author}}</li> </ul>
@@ -20,10 +17,26 @@ export default {
       <p>{{book.description}}</p>
       <p>Page count: {{book.pageCount}}</p>
       <review-add />
-      <button @click="$emit('close')">Close</button>
-    </div>
+      <!-- <button @click="$emit('close')">Close</button> -->
+      <router-link to="/book">Close</router-link>
+    </section>
+    <section class="book-details-img">
+      <img :src="book.thumbnail">
+    </section>
   </article>
   `,
+
+  data() {
+    return {
+      book: null
+    }
+  },
+
+  created() {
+    const { bookId } = this.$route.params
+    this.book = bookService.getById(bookId)
+    console.log(this.book);
+  },
 
   computed: {
     countPages() {
