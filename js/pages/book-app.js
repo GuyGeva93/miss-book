@@ -2,11 +2,12 @@ import { bookService } from '../services/book-service.js';
 import bookFilter from '../cmps/book-filter.js';
 import bookList from '../cmps/book-list.js';
 import bookDetails from './book-details.js';
+import appHeader from './header.js';
 
 export default {
   template: `
   <section>
-    <h1>Miss Book</h1>
+    <app-header />
     <book-filter @filtered="setFilter"/>
     <book-list v-if="!selectedBook" @selected="selectBook" :books="booksToShow"/>
     <book-details v-else :book="selectedBook" @close="closeDetails"/>
@@ -24,7 +25,10 @@ export default {
 
   methods: {
     selectBook(bookId) {
-      this.selectedBook = this.books.find(book => { return book.id === bookId })
+      // this.selectedBook = this.books.find(book => { return book.id === bookId })
+      bookService.getById(bookId)
+        .then(book => { return book })
+        .catch(err => console.log(err));
     },
     closeDetails() {
       this.selectedBook = null;
@@ -46,13 +50,14 @@ export default {
 
   created() {
     bookService.query()
-      .then(books => this.books = books)
+      .then(books => { this.books = books })
       .catch(err => console.log(err));
   },
 
   components: {
     bookFilter,
     bookList,
-    bookDetails
+    bookDetails,
+    appHeader
   }
 }

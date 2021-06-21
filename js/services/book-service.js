@@ -4,14 +4,22 @@ import { utilService } from './util-service.js';
 const BOOKS_KEY = 'books'
 
 export const bookService = {
-  query
-};
-
-
-function query() {
-  return storageService.query(BOOKS_KEY);
+  query,
+  getById,
+  post
 }
 
+function query() {
+  return storageService.query(BOOKS_KEY)
+}
+
+function post() {
+  storageService.postMany(BOOKS_KEY, gBooks)
+}
+
+function getById(bookId) {
+  return storageService.get(BOOKS_KEY, bookId)
+}
 
 const gBooks = [
   {

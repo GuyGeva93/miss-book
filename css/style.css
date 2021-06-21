@@ -1,3 +1,11 @@
+a {
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+}
+
 button {
   cursor: pointer;
 }
@@ -8,20 +16,53 @@ button {
   height: 90vh;
 }
 
+/* LINKS */
+
+.router-link-exact-active {
+  color: #fff;
+}
+
+/* HEADER */
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #3D2C2E;
+  color: #F5EDF0;
+}
+
+.header-nav {
+  position: absolute;
+  right: 20px;
+}
+
+/* BOOK FILTER */
+
+.book-filter {
+  background-color: #3D2C2E;
+}
+
 /* HOME PAGE */
 
 .home-page {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   font-family: fantasy;
   background-color: lightgrey;
   font-size: 2rem;
 }
 
 .home-page a {
-  text-decoration: none;
-  color: #000;
+  color: #fff;
+}
+
+.home-page a:visited {
+  color: #fff;
 }
 
 .home-page img {
@@ -34,6 +75,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #3D2C2E;
 }
 
 .about img {
@@ -50,7 +92,7 @@ button {
   margin: 0;
   padding: 0;
   list-style: none;
-  background-color: lightgray;
+  background-color: #3D2C2E;
 }
 
 /* BOOK PREVIEW */
@@ -66,7 +108,7 @@ button {
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
-  background-color: lightseagreen;
+  background-color: #F5EDF0;
 }
 
 .book-preview .book-title {
@@ -77,7 +119,7 @@ button {
 
 .book-details {
   display: flex;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   background-color: lightcyan;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -100,10 +142,11 @@ button {
   font-style: italic;
 }
 
-/* .red {
-  background-color: rgb(180, 30, 30);
-}
+/* REVIEW ADD */
 
-.green {
-  background-color: rgb(45, 195, 19);
-} */
+.review-add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+}

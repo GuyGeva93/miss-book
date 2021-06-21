@@ -1,3 +1,4 @@
+import reviewAdd from './review-add.js'
 
 export default {
   props: ['book'],
@@ -18,25 +19,11 @@ export default {
       <p>Publish date: {{book.publishedDate}}</p>
       <p>{{book.description}}</p>
       <p>Page count: {{book.pageCount}}</p>
+      <review-add />
       <button @click="$emit('close')">Close</button>
     </div>
   </article>
   `,
-
-  data() {
-    return {
-      // red: false,
-      // green: false
-    }
-  },
-
-  // methods() {
-  //   return {
-  //     colorsSet() {
-  //       if (this.book.listPrice.amount > )
-  //     }
-  //   }
-  // },
 
   computed: {
     countPages() {
@@ -55,14 +42,9 @@ export default {
     price() {
       return this.book.listPrice.amount
     },
-
-    // priceColor() {
-    //   if (this.red) {
-    //     return true
-    //   }
-    //   if (this.green) return true
-
-    // }
+  },
+  components: {
+    reviewAdd
   }
 
 }
