@@ -1,3 +1,6 @@
+import { storageService } from './async-storage-service.js';
+
+const BOOKS_KEY = 'books'
 
 export const bookService = {
   query
@@ -5,8 +8,12 @@ export const bookService = {
 
 
 function query() {
-  return gBooks
+  // return gBooks
+  return storageService.query(BOOKS_KEY);
+
 }
+
+
 
 const gBooks = [
   {
