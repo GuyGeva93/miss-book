@@ -3,28 +3,23 @@ import reviewAdd from './review-add.js'
 
 export default {
   template: `
-  <article class="book-details">
-    
+  <article class="book-details" v-if="book">
     <section class="book-details-info">
+      <router-link to="/book">Close</router-link>
       <h2 class="book-details-title">-{{book.title}}-</h2>
       <p v-if="countPages" class="bold">-{{countPages}}</p>
-      <p v-if="publishDate" class="bold">-{{publishDate}}</p>
-      <!-- <p class="bold">-{{book.listPrice.amount}}</p> -->
-      <!-- <p v-if="publishDate" class="bold" v-bind:class="{color: priceColor}">-{{book.listPrice.amount}}</p> -->
-      <p class="bold">Authors:</p>
-      <ul v-for="author in book.authors" class="bold"><li>{{author}}</li> </ul>
-      <p>Publish date: {{book.publishedDate}}</p>
+      <p v-if="publishDate" class="bold">-{{book.publishedDate}}</p>
+      <h3> Authors: {{authors}} </h3>
+      <p>Publish date: {{publishDate}}</p>
       <p>{{book.description}}</p>
       <p>Page count: {{book.pageCount}}</p>
-      <review-add />
-      <!-- <button @click="$emit('close')">Close</button> -->
-      <router-link to="/book">Close</router-link>
+      <review-add :addReview="addReview"/>
+      <review-list :review="book.reviews"/>
     </section>
     <section class="book-details-img">
       <img :src="book.thumbnail">
     </section>
-  </article>
-  `,
+  </article>`,
 
   data() {
     return {
@@ -33,18 +28,15 @@ export default {
   },
 
   created() {
-    const { bookId } = this.$route.params
-    this.book = bookService.getById(bookId)
-    console.log(this.book);
+    const { bookId } = this.$route.params;
+    bookService.getBookById(bookId)
+      .then(book => this.book = book)
+      .catch(err => console.log(err))
   },
 
   computed: {
-    countPages() {
-      if (this.book.pageCount > 500) return 'Long reading'
-      if (this.book.pageCount > 200) return 'Decent reading'
-      if (this.book.pageCount > 500) return 'Light reading'
-      return null
-
+    authors() {
+      return this.book.authors.join(' and ');
     },
     publishDate() {
       let countYear = new Date().getFullYear() - this.book.publishedDate
@@ -52,12 +44,25 @@ export default {
       if (countYear < 1) return 'New book!'
       return null
     },
-    price() {
-      return this.book.listPrice.amount
+    countPages() {
+      if (this.book.pageCount > 500) return 'Long reading'
+      if (this.book.pageCount > 200) return 'Decent reading'
+      if (this.book.pageCount > 500) return 'Light reading'
+      return null
     },
   },
+
   components: {
     reviewAdd
   }
-
 }
+
+
+// computed: {
+
+
+//   // },
+//   price() {
+//     return this.book.listPrice.amount
+//   }
+// },

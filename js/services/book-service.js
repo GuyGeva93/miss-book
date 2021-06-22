@@ -1,23 +1,54 @@
 import { storageService } from './async-storage-service.js';
+import { utilService } from './util-service.js';
 
 const BOOKS_KEY = 'books'
 
 export const bookService = {
   query,
-  getById,
-  post
+  getBookById,
+  removeBook,
+  addReview,
+  removeReview
 }
 
 function query() {
   return storageService.query(BOOKS_KEY)
+    .then(books => {
+      if (!books.length) {
+        const defBooks = gBooks
+        storageService.postMany(BOOKS_KEY, defBooks)
+        return defBooks
+      }
+      return books
+    })
+
 }
 
-function post() {
-  storageService.postMany(BOOKS_KEY, gBooks)
+function removeBook(bookId) {
+  return storageService.remove(BOOKS_KEY, bookId);
 }
 
-function getById(bookId) {
-  return gBooks.find(book => { return book.id === bookId })
+function getBookById(bookId) {
+  return storageService.get(BOOKS_KEY, bookId);
+}
+
+function addReview(bookId, review) {
+  review.id = storageService._makeId();
+  return getBookById(bookId).then(book => {
+    if (!book.reviews) book.reviews = [];
+    book.reviews.push(review);
+    return storageService.put(BOOKS_KEY, book);
+  })
+}
+
+function removeReview(bookId, reviewId) {
+  return getBookById(bookId)
+    .then(book => {
+      const reviewIdx = book.reviews.findIndex(review => review.id === reviewId);
+      if (reviewIdx === -1) return Promise.reject('Failed to find the review!');
+      book.reviews.splice(reviewIdx, 1);
+      return storageService.put(BOOKS_KEY, book);
+    })
 }
 
 const gBooks = [

@@ -10,7 +10,7 @@ export const storageService = {
 }
 
 function query(entityType) {
-  var entities = JSON.parse(localStorage.getItem(entityType)) || gBooks
+  var entities = JSON.parse(localStorage.getItem(entityType)) || []
   return Promise.resolve(entities);
 }
 
@@ -20,7 +20,7 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
-  // newEntity.id = _makeId()
+  newEntity.id = _makeId()
   return query(entityType)
     .then(entities => {
       entities.push(newEntity);

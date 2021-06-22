@@ -9,8 +9,7 @@ export default {
   <section>
     <app-header />
     <book-filter @filtered="setFilter"/>
-    <book-list :books="booksToShow"/>
-    <!-- <book-details :book="selectBook" @close="closeDetails"/> -->
+    <book-list :books="booksToShow" @remove="removeBook"/>
   </section>
   
   `,
@@ -23,8 +22,16 @@ export default {
   },
 
   methods: {
+    loadBooks() {
+      bookService.query()
+        .then(books => this.books = books);
+    },
     setFilter(filterBy) {
       this.filterBy = filterBy;
+    },
+    removeBook(bookId) {
+      bookService.removeBook(bookId)
+        .then(() => this.loadBooks())
     }
   },
 

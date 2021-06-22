@@ -2,6 +2,10 @@ a {
   text-decoration: none;
 }
 
+a:visited, a:link {
+  color: black;
+}
+
 body {
   margin: 0;
 }
@@ -30,19 +34,22 @@ button {
   align-items: center;
   height: 10vh;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  background-color: #3D2C2E;
+  background-color: #554245;
   color: #F5EDF0;
 }
 
 .header-nav {
   position: absolute;
-  right: 20px;
+  right: 30px;
+  font-size: 1.4rem;
 }
 
 /* BOOK FILTER */
 
 .book-filter {
-  background-color: #3D2C2E;
+  background-color: #554245;
+  display: flex;
+  justify-content: center;
 }
 
 /* HOME PAGE */
@@ -75,7 +82,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #3D2C2E;
+  background-color: #554245;
 }
 
 .about img {
@@ -92,7 +99,7 @@ button {
   margin: 0;
   padding: 0;
   list-style: none;
-  background-color: #3D2C2E;
+  background-color: #554245;
 }
 
 /* BOOK PREVIEW */
@@ -101,18 +108,23 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 250px;
-  height: 150px;
+  width: 300px;
   padding: 10px;
   margin: 10px;
   border: 1px solid black;
   border-radius: 5px;
-  cursor: pointer;
   background-color: #F5EDF0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .book-preview .book-title {
   font-weight: bolder;
+}
+
+.book-preview a {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 /* BOOK DETAILS */
@@ -120,18 +132,27 @@ button {
 .book-details {
   display: flex;
   font-size: 1.2rem;
-  background-color: lightcyan;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #554245;
+  color: #F5EDF0;
 }
 
-.book-details-img {
-  align-self: center;
+.book-details img {
+  max-width: 250px;
 }
 
 .book-details-info {
   display: flex;
-  align-items: center;
+  margin-inline-start: 20px;
   flex-direction: column;
+  line-height: 1;
+}
+
+.book-details a {
+  align-self: center;
+  color: #F5EDF0;
+  padding: 10px;
+  border: 1px solid #F5EDF0;
 }
 
 .bold {
@@ -155,4 +176,5 @@ button {
 .review-add-form {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }

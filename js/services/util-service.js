@@ -1,7 +1,7 @@
 export const utilService = {
   saveToStorage,
   loadFromStorage,
-  deleteFromStorage
+  deleteFromStorage,
 }
 
 function saveToStorage(key, data) {
