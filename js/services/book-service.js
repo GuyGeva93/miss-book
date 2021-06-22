@@ -8,7 +8,8 @@ export const bookService = {
   getBookById,
   removeBook,
   addReview,
-  removeReview
+  removeReview,
+  addGoogleBook
 }
 
 function query() {
@@ -49,6 +50,10 @@ function removeReview(bookId, reviewId) {
       book.reviews.splice(reviewIdx, 1);
       return storageService.put(BOOKS_KEY, book);
     })
+}
+
+function addGoogleBook(googleBook) {
+  console.log('adding Google book..');
 }
 
 const gBooks = [

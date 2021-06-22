@@ -2,12 +2,12 @@ import { bookService } from '../services/book-service.js';
 import bookFilter from '../cmps/book-filter.js';
 import bookList from '../cmps/book-list.js';
 import bookDetails from './book-details.js';
-import appHeader from './header.js';
+import bookHeader from './book-header.js';
 
 export default {
   template: `
   <section>
-    <app-header />
+    <book-header />
     <book-filter @filtered="setFilter"/>
     <book-list :books="booksToShow" @remove="removeBook"/>
   </section>
@@ -55,6 +55,6 @@ export default {
     bookFilter,
     bookList,
     bookDetails,
-    appHeader
+    bookHeader
   }
 }
