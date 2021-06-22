@@ -6,7 +6,7 @@ export default {
     <nav class="header-nav">
       <router-link to="/book">Books</router-link> |
       <router-link to="/about">About us</router-link> |
-      <router-link to="/book-add">Add book from Google</router-link> 
+      <router-link to="/google-book-add">Add book from Google</router-link> 
 
     </nav>
   </header>`,

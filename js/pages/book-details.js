@@ -6,7 +6,11 @@ export default {
   template: `
   <article class="book-details" v-if="book">
     <section class="book-details-info">
-      <router-link to="/book">Close</router-link>
+      <nav class="book-details-nav">
+        <!-- <router-link to="/book">Previous book</router-link> -->
+        <router-link to="/book">X</router-link>
+        <router-link :to="'' + nextBookId">Next book</router-link>
+      </nav>
       <h2 class="book-details-title">-{{book.title}}-</h2>
       <p v-if="countPages" class="bold">-{{countPages}}</p>
       <p v-if="publishDate" class="bold">-{{book.publishedDate}}</p>
@@ -24,15 +28,34 @@ export default {
 
   data() {
     return {
-      book: null
+      book: null,
+      nextBookId: null,
     }
   },
 
   created() {
-    const { bookId } = this.$route.params;
-    bookService.getBookById(bookId)
-      .then(book => this.book = book)
-      .catch(err => console.log(err))
+
+  },
+
+  watch: {
+    '$route.params.bookId': {
+      immediate: true,
+      handler() {
+        const { bookId } = this.$route.params;
+        bookService.getBookById(bookId)
+          .then(book => {
+            this.book = book
+          })
+          .catch(err => console.log(err))
+
+        bookService.getNextBook(bookId)
+          .then(bookId => {
+            this.nextBookId = bookId
+            console.log(this.bookId);
+          })
+          .catch(err => console.log(err))
+      }
+    }
   },
 
   methods: {

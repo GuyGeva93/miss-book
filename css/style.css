@@ -20,7 +20,7 @@ button {
   height: 90vh;
 }
 
-.clear-list {
+.clean-list {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -161,6 +161,13 @@ button {
   border: 1px solid #F5EDF0;
 }
 
+.book-details-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  ;
+}
+
 .bold {
   font-weight: bolder;
 }
@@ -193,8 +200,24 @@ button {
 
 /* BOOK ADD */
 
-.book-add {
+.google-book-add {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
+}
+
+/* GOOGLE BOOK PREVIEW */
+
+.google-book-preview-li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.google-book-preview-ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
