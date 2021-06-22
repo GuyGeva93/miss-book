@@ -1,12 +1,9 @@
-import { bookService } from "../services/book-service.js";
-
-
 
 export default {
   template: `
   <section class="review-add">
     <h3>Enter your book review</h3>
-    <form @submit.prevent="addReview" class="review-add-form">
+    <form @submit.prevent="submitReview" class="review-add-form">
       <label>Full name:</label>
       <input v-model="review.name" type="text" required>
       <label>Rating:</label>
@@ -33,16 +30,20 @@ export default {
         date: null,
         text: null
       },
-      addReview: false,
       reviews: false
     }
   },
 
   methods: {
-    // addReview() {
-    // this.$emit('addReview', this.review)
-    // },
-
+    submitReview() {
+      this.$emit('addReview', this.review)
+      this.review = {
+        readerName: null,
+        rating: null,
+        readAt: null,
+        text: null
+      }
+    },
   }
 
 

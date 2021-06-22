@@ -1,5 +1,6 @@
 import { bookService } from '../services/book-service.js'
 import reviewAdd from './review-add.js'
+import reviewList from '../cmps/review-list.js'
 
 export default {
   template: `
@@ -13,8 +14,8 @@ export default {
       <p>Publish date: {{publishDate}}</p>
       <p>{{book.description}}</p>
       <p>Page count: {{book.pageCount}}</p>
-      <review-add :addReview="addReview"/>
-      <review-list :review="book.reviews"/>
+      <review-add @addReview="addReview"/>
+      <review-list :reviews="getBookReviews" @remove="removeReview" > </review-list>
     </section>
     <section class="book-details-img">
       <img :src="book.thumbnail">
@@ -34,6 +35,30 @@ export default {
       .catch(err => console.log(err))
   },
 
+  methods: {
+    addReview(review) {
+      debugger
+      bookService.addReview(this.book.id, review)
+        .then(book => {
+          this.book = book
+          // const msg = {
+          //   txt: 'Your review was successfully added!',
+          //   type: 'success',
+          //   linkTitle: 'Check this book out',
+          //   link: '/book/' + this.book.id
+          // };
+          // eventBus.$emit('show-msg', msg);
+        })
+        .catch(err => console.log(err))
+      // eventBus.$emit('show-msg', msg);
+    },
+    removeReview(reviewId) {
+      bookService.removeReview(this.book.id, reviewId).then(book => {
+        this.book = book;
+      })
+    },
+  },
+
   computed: {
     authors() {
       return this.book.authors.join(' and ');
@@ -50,10 +75,14 @@ export default {
       if (this.book.pageCount > 500) return 'Light reading'
       return null
     },
+    getBookReviews() {
+      return this.book.reviews
+    },
   },
 
   components: {
-    reviewAdd
+    reviewAdd,
+    reviewList,
   }
 }
 

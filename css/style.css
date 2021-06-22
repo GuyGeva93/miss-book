@@ -20,6 +20,12 @@ button {
   height: 90vh;
 }
 
+.clear-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 /* LINKS */
 
 .router-link-exact-active {
@@ -177,4 +183,10 @@ button {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+/* REVIEW PREVIEW */
+
+.review-preview {
+  border: 1px solid black;
 }
